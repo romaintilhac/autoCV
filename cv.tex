@@ -1,36 +1,5 @@
-%-----------------------------------------------------------------------------------------------------------------------------------------------%
-%	The MIT License (MIT)
-%
-%	Copyright (c) 2021 Jitin Nair
-%
-%	Permission is hereby granted, free of charge, to any person obtaining a copy
-%	of this software and associated documentation files (the "Software"), to deal
-%	in the Software without restriction, including without limitation the rights
-%	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-%	copies of the Software, and to permit persons to whom the Software is
-%	furnished to do so, subject to the following conditions:
-%	
-%	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-%	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-%	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-%	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-%	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-%	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-%	THE SOFTWARE.
-%	
-%
-%-----------------------------------------------------------------------------------------------------------------------------------------------%
-
-%----------------------------------------------------------------------------------------
-%	DOCUMENT DEFINITION
-%----------------------------------------------------------------------------------------
-
-% article class because we want to fully customize the page and not use a cv template
-\documentclass[a4paper,12pt]{article}
-
-%----------------------------------------------------------------------------------------
-%	FONT
-%----------------------------------------------------------------------------------------
+% Based on autoCV by Jitin Nair
+% https://www.overleaf.com/latex/templates/autocv/scfvqfpxncwb
 
 % % fontspec allows you to use TTF/OTF fonts directly
 % \usepackage{fontspec}
@@ -43,156 +12,205 @@
 % ItalicFont = Fontin-Italic.otf
 % ]
 % {Fontin.otf}
-
-%----------------------------------------------------------------------------------------
-%	PACKAGES
-%----------------------------------------------------------------------------------------
+\documentclass[a4paper,11pt]{article}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{url}
 \usepackage{parskip} 	
 
-%other packages for formatting
 \RequirePackage{color}
 \RequirePackage{graphicx}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage[scale=0.9]{geometry}
 
-%tabularx environment
-\usepackage{tabularx}
-
-%for lists within experience section
+\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+\usepackage{supertabular} %to prevent spillover of tabular into next pages
+\usepackage{tabularx} %tabularx environment
 \usepackage{enumitem}
-
-% centered version of 'X' col. type
-\newcolumntype{C}{>{\centering\arraybackslash}X} 
-
-%to prevent spillover of tabular into next pages
-\usepackage{supertabular}
-\usepackage{tabularx}
-\newlength{\fullcollw}
-\setlength{\fullcollw}{0.47\textwidth}
-
-%custom \section
+\usepackage{dirtytalk} %quotation marks
+\usepackage{ulem}
 \usepackage{titlesec}				
 \usepackage{multicol}
 \usepackage{multirow}
+\usepackage[unicode, draft=false]{hyperref}
+\usepackage{fontawesome5} %social icons
+    \definecolor{custom}{rgb}{0,0.2,0.6}
+    \hypersetup{colorlinks,breaklinks,urlcolor=custom,linkcolor=custom}
 
-%CV Sections inspired by: 
-%http://stefano.italians.nl/archives/26
+\newcolumntype{C}{>{\centering\arraybackslash}X} % centered version of 'X' col. type
+
+\newlength{\fullcollw}
+\setlength{\fullcollw}{0.47\textwidth}
+
 \titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
 \titlespacing{\section}{0pt}{10pt}{10pt}
 
-%for publications
-\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
-
-%Setup hyperref package, and colours for links
-\usepackage[unicode, draft=false]{hyperref}
-\definecolor{linkcolour}{rgb}{0,0.2,0.6}
-\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
-\addbibresource{citations.bib}
 \setlength\bibitemsep{1em}
 
-%for social icons
-\usepackage{fontawesome5}
-
-%debug page outer frames
-%\usepackage{showframe}
-
-%----------------------------------------------------------------------------------------
-%	BEGIN DOCUMENT
-%----------------------------------------------------------------------------------------
 \begin{document}
 
-% non-numbered pages
 \pagestyle{empty} 
 
-%----------------------------------------------------------------------------------------
-%	TITLE
-%----------------------------------------------------------------------------------------
-
-% \begin{tabularx}{\linewidth}{ @{}X X@{} }
-% \huge{Your Name}\vspace{2pt} & \hfill \emoji{incoming-envelope} email@email.com \\
-% \raisebox{-0.05\height}\faGithub\ username \ | \
-% \raisebox{-0.00\height}\faLinkedin\ username \ | \ \raisebox{-0.05\height}\faGlobe \ mysite.com  & \hfill \emoji{calling} number
-% \end{tabularx}
-
+% HEADER
 \begin{tabularx}{\linewidth}{@{} C @{}}
-\Huge{Your Name} \\[7.5pt]
-\href{https://github.com/username}{\raisebox{-0.05\height}\faGithub\ username} \ $|$ \ 
-\href{https://linkedin.com/in/username}{\raisebox{-0.05\height}\faLinkedin\ username} \ $|$ \ 
-\href{https://mysite.com}{\raisebox{-0.05\height}\faGlobe \ mysite.com} \ $|$ \ 
-\href{mailto:email@mysite.com}{\raisebox{-0.05\height}\faEnvelope \ email@mysite.com} \ $|$ \ 
-\href{tel:+000000000000}{\raisebox{-0.05\height}\faMobile \ +00.00.000.000} \\
+\LARGE{\textsc{Romain Tilhac}} \\
+Géochimiste $|$ Chercheur post-doctorant (IACT/CSIC, Grenade)\\[7.5pt]
+\href{mailto:romain.tilhac@csic.es}{\raisebox{-0.05\height}\faEnvelope \ romain.tilhac@csic.es} \ $|$ \
+\href{https://orcid.org/0000-0001-5132-6228}{\raisebox{-0.05\height}\faOrcid \ 0000-0001-5132-6228} \ $|$ \
+\href{https://romaintilhac.github.io}{\raisebox{-0.05\height}\faGlobe \ romaintilhac.github.io} \ $|$ \ 
+\href{https://github.com/romaintilhac}{\raisebox{-0.05\height}\faGithub\ romaintilhac}
 \end{tabularx}
 
-%----------------------------------------------------------------------------------------
-% EXPERIENCE SECTIONS
-%----------------------------------------------------------------------------------------
+% RESEARCH INTERESTS
+\section{Thèmes de recherche}
 
-%Interests/ Keywords/ Summary
-\section{Summary}
-This CV is automatically generated and deployed using the \href{https://github.com/jitinnair1/autoCV}{autoCV} template along with GitHub Actions such that a new version of the CV is compiled, published and ready for use when the cv.tex file is updated. For details, \href{https://github.com/jitinnair1/autoCV}{click here}.
+    {Mes recherches portent sur l’évolution et la dynamique du manteau terrestre par une approche qui combine méthodes analytiques et modélisation de la mobilité élémentaire et du fractionnement isotopique associés à la genèse et à la migration des magmas. Je travaille notamment sur la formation et le recyclage des pyroxénites et leurs conséquences sur la genèse des basaltes océaniques et les grands cycles géochimiques.}
+    
+% EDUCATION
+\section{Cursus universitaire}
 
-%Experience
-\section{Work Experience}
+    {\bf Doctorat en Pétrologie et Géochimie}, Macquarie University
+    \hfill {2013 - 2017}\\
+    {\footnotesize Co-tutelle avec l'Université Paul Sabatier (Toulouse)}
+    \hfill \textit{Sydney, Australie}\\
+    \say{\textit{Petrology and geochemistry of pyroxenites from the Cabo Ortegal Complex, Spain}}
+    
+    {\bf Licence \& Master en Sciences de la Terre}, Université Paul Sabatier
+    \hfill {2006 - 2011}\\
+    \uline{Major de promotion, Mention Bien}
+    \hfill \textit{Toulouse, France}
+     
+% EXPERIENCE
+\section{Expériences professionnelles}
+    
+    \textbf{Chercheur post-doctorant \textit{JdC Fellow}}
+    \hfill {Depuis 2020}\\
+    Instituto Andaluz de Ciencias de la Tierra (IACT)/CSIC, avec \textbf{C. Garrido}
+    \hfill \textit{Grenade, Espagne}
+     
+    \textbf{Chercheur post-doctorant \textit{JSPS Fellow}}
+    \hfill {2020}\\
+    Kanazawa University, avec \textbf{T. Morishita}
+    \hfill \textit{Kanazawa, Japon}
+    
+    \textbf{\textit{Research Associate}}
+    \hfill {2017 - 2019}\\
+    ARC Centre of Excellence CCFS/GEMOC, avec \textbf{S.Y. O'Reilly}
+    \hfill \textit{Sydney, Australie}\\
+    Responsable de l’équipe de géochronologie \textit{TerraneChron}
+    
+% SKILLS
+\section{Compétences scientifiques}
 
-\begin{tabularx}{\linewidth}{ @{}l r@{} }
-\textbf{Designation} & \hfill Jan 2021 - present \\[3.75pt]
-\multicolumn{2}{@{}X@{}}{long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width}  \\
-\end{tabularx}
-
-\begin{tabularx}{\linewidth}{ @{}l r@{} }
-\textbf{Designation} & \hfill Mar 2019 - Jan 2021 \\[3.75pt]
-\multicolumn{2}{@{}X@{}}{
-\begin{minipage}[t]{\linewidth}
-    \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
-        \item[--] long long line of blah blah that will wrap when the table fills the column width
-        \item[--] again, long long line of blah blah that will wrap when the table fills the column width but this time even more long long line of blah blah. again, long long line of blah blah that will wrap when the table fills the column width but this time even more long long line of blah blah
+    \textbf{Techniques analytiques} 
+    \begin{itemize}[itemsep=0pt,parsep=2pt]
+        \item Pétrographie et minéralogie (microscopie optique, MEB, thermo-barométrie, micro-thermométrie)
+        \item Séparation minérale (désagrégation Selfrag, magnétique, liqueurs denses, piquage)
+        \item Chimie par voie humide (digestion acide et en tubes Carius, chromatographie par colonne, extraction Re-Os par solvant et micro-distillation, dilution isotopique)
+        \item Géochimie élémentaire (analyse en solution/\textit{in situ} des éléments majeurs et traces par microsonde électronique et solution/ablation laser ICP-MS)
+        \item Géochimie isotopique et géochronologie (analyse des isotopes radiogéniques Rb-Sr, Sm-Nd, Lu-Hf et Re-Os par TIMS et multi-collecteur [MC]-ICP-MS, datation U-Pb/Lu-Hf sur zircon par LA-[MC]-ICP-MS)
     \end{itemize}
-    \end{minipage}
-}
-\end{tabularx}
+    
+    \textbf{Modélisation numérique et traitement de données}
+    \begin{itemize}[itemsep=0pt,parsep=2pt]
+        \item Modélisation de partitionnement élémentaire et fractionnement isotopique par les processus magmatiques
+        \item Développement de modèles de diffusion, percolation-diffusion, fusion de sources mixtes \& en système ouvert
+        \item Utilisation \& développement de modèles thermomécaniques de transport réactif, modélisation thermodynamique (pMELTS, Melt-PX)
+        \item Langages de programmation: Matlab, Python (Numpy, Matplotlib, Pandas), Visual Basic (VBA), HTML, développement du package de visualisation de données \textit{Geoch’Em} pour Excel
+    \end{itemize}
+    
+    \textbf{Géologie de terrain}
+    \begin{itemize}[itemsep=0pt,parsep=2pt]
+        \item Pétrologie magmatique et métamorphique en terrain mafique et ultramafique
+        \item Expériences de terrain : Pyrénées, Galice, Espagne, Italie, République Tchèque, Californie, Australie
+        \item Analyse microstructurale, échantillonnage et cartographie
+    \end{itemize}
 
-%Projects
-\section{Projects}
+% GRANTS & REWARDS
+\section{Financements \& récompenses}
 
-\begin{tabularx}{\linewidth}{ @{}l r@{} }
-\textbf{Some Project} & \hfill \href{https://some-link.com}{Link to Demo} \\[3.75pt]
-\multicolumn{2}{@{}X@{}}{long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width}  \\
-\end{tabularx}
+    \textbf{Crédits de recherche en tant que PI \textit{\say{Proyectos de generación de conocimiento}}}
+    \hfill {Sept. 2022}\\
+    \say{\textit{mOdelling arC rEcycling in the oceanic mAntle using radiogeNic iSotope systems (OCEANS)}}\\
+    Ministère espagnol des Sciences, de l'Innovation et des Universités 45 k€ (2 ans)
+    
+    \textbf{Financement postdoctoral \textit{Juan de la Cierva (Incorporación)}}
+    \hfill {Août 2021}\\
+    Ministère espagnol des Sciences, de l'Innovation et des Universités (3 ans)
+    
+    \textbf{Financement postdoctoral \textit{Juan de la Cierva (Formación)}}
+    \hfill {Déc. 2019}\\
+    Ministère espagnol des Sciences, de l'Innovation et des Universités (2 ans)
+    
+    \textbf{Financement post-doctoral JSPS (Short-term)}
+    \hfill {Oct. 2019}\\
+    \textit{Japan Society for the Promotion of Science} (1 an)
+    
+    \textbf{Thèse de doctorat classée dans les 10\% des meilleures thèses examinées}
+    \hfill {Sept. 2017}\\
+    Macquarie University (Sydney)
+    
+    \textbf{Bourse doctorale d’excellence iMQRES}
+    \hfill {Fév. 2012}\\
+    International Macquarie Research Excellence Scholarship (3,5 ans)
 
-%----------------------------------------------------------------------------------------
-%	EDUCATION
-%----------------------------------------------------------------------------------------
-\section{Education}
-\begin{tabularx}{\linewidth}{@{}l X@{}}	
-2030 - present & PhD (Subject) at \textbf{University} \hfill \normalsize (GPA: 4.0/4.0) \\
+% OTHER ACTIVITIES
+\section{Activité scientifique communautaire}
 
-2023 - 2027 & Bachelor's Degree at \textbf{College} \hfill (GPA: 4.0/4.0) \\ 
+    \textbf{Séminaires \& présentations invités}
+    \begin{itemize}[label={},itemsep=0pt,parsep=0pt]
+        \item Université Goethe de Francfort
+            \hfill \textit{Francfort}, {Janvier 2023}
+        \item International Symposium DEEP 2021
+            \hfill \textit{Nanjing}, {Oct. 2021}
+        \item Université de Tokyo
+            \hfill \textit{Tokyo}, {Mars 2019}
+        \item Geoanalysis 2018
+            \hfill \textit{Sydney}, {Juillet 2018}
+    \end{itemize}
 
-2022 & Class 12th Some Board \hfill  (Grades) \\
+    \textbf{Organisation de sessions à la Goldschmidt Conference}\\
+    \say{\textit{Insights on the formation, preservation and transport of mantle compositional heterogeneities}} \hfill {2023}\\
+    \say{\textit{Mantle heterogeneity: origins and contribution to magmatism and implications for mantle dynamics}} \hfill {2021} \\
+    \say{\textit{Development and recycling of chemical and isotopic heterogeneities in the sub-arc mantle}} \hfill {2020}
+    
+    \textbf{Reviewer fréquent pour des revues scientifiques internationales (23 reviews)}\\
+      Geology, Journal of Petrology, Earth-Science Reviews, Chemical Geology, Scientific Reports, Geological Society of London Special Publications, Lithos, European Journal of Mineralogy, American Journal of Science, Frontiers in Earth Science, Ofioliti, Minerals
 
-2021 & Class 10th Some Board \hfill  (Grades) \\
-\end{tabularx}
+% SUPERVISION & TEACHING
+\section{Encadrement \& enseignement}
+    \textbf{Thèse d'H. Henry}, Macquarie University
+    \hfill {2015 - 2018}\\ 
+    \say{\textit{Mantle pyroxenites: deformation and seismic properties}}
+    \hfill \textit{Sydney, Australie}
 
-%----------------------------------------------------------------------------------------
-%	PUBLICATIONS
-%----------------------------------------------------------------------------------------
-\section{Publications}
-\begin{refsection}[citations.bib]
-\nocite{*}
-\printbibliography[heading=none]
-\end{refsection}
+    \textbf{Mémoire de M. Smith}, Macquarie University
+    \hfill {2018}\\ 
+    \say{\textit{Dating the Donkerhuk granite, Damara Orogen, Namibia}}
+    \hfill \textit{Sydney, Australie}
 
-%----------------------------------------------------------------------------------------
-%	SKILLS
-%----------------------------------------------------------------------------------------
-\section{Skills}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-Some Skills &  \normalsize{This, That, Some of this and that etc.}\\
-Some More Skills  &  \normalsize{Also some more of this, Some more that, And some of this and that etc.}\\  
-\end{tabularx}
+\textbf{Enseignement}, Macquarie University
+\hfill {2014-2019}
+    \begin{itemize}[label={},itemsep=0pt,parsep=0pt]
+        \item Niveau Master : modélisation du comportement des éléments traces during les processus magmatiques 
+        \item Niveau Licence : terrain de géologie structurale et métamorphique (Hill End, Nouvelles-Galles du Sud)
+    \end{itemize}
 
-\vfill
-\center{\footnotesize Last updated: \today}
+% ADDITIONAL TRAINING
+\section{Formations complémentaires}
+
+    \begin{itemize}[label={},itemsep=0pt,parsep=0pt]
+        \item Fugacité d’oxygène : théorie et pratiques en géosciences
+        \item Analyses et techniques géochimiques
+        \item Frontières de recherche en géophysique et géodynamique
+    \end{itemize}
+    
+% LANGUAGES
+\section{Langues}
+
+Français, Anglais, Espagnol
+
+\center{\footnotesize Mis à jour: \today}
 
 \end{document}
